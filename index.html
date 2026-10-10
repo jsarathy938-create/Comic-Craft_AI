@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ComicCraft - AI Comic Generator</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body { background-color: #f4f6f9; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        .hero { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 40px 0; border-radius: 0 0 20px 20px; }
+        .card { border: none; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        .comic-script { background: #fff3cd; border: 2px solid #ffebaa; border-radius: 10px; padding: 20px; white-space: pre-line; }
+    </style>
+</head>
+<body>
+    <div class="hero text-center mb-5">
+        <h1>🎨 ComicCraft</h1>
+        <p class="lead">AI Powered Comic Strip Generator</p>
+    </div>
+    <div class="container mb-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card p-4 mb-4">
+                    <form action="/generate" method="post">
+                        <div class="mb-3">
+                            <label for="prompt" class="form-label fw-bold">Enter your story idea / prompt:</label>
+                            <textarea class="form-control" id="prompt" name="prompt" rows="3" placeholder="Example: A small dog saving the city from a giant rubber duck" required>{{ prompt if prompt else '' }}</textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100 py-2">Generate Comic</button>
+                    </form>
+                </div>
+
+                {% if generated_story %}
+                <div class="card p-4">
+                    <h3 class="mb-3 text-primary">📜 AI Generated Comic Script:</h3>
+                    <div class="comic-script fs-5">
+                        {{ generated_story }}
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</body>
+</html>
